@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'OnlineEd - ' + ${course.title}">OnlineEd - Название Курса</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">OnlineEd</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/courses">Курсы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Вход</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Главный контент -->
+<main>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="mb-4" th:text="${course.title}">Название Курса</h1>
+                    <p class="lead" th:text="${course.description}">Описание курса. Здесь вы можете узнать больше о содержании и особенностях этого курса.</p>
+                    <p>Преподаватель: <span th:text="${course.creatorId}">Имя Преподавателя</span></p>
+                    <p>Дата начала: <span th:text="${#dates.format(course.createdAt, 'dd/MM/yyyy')}">DD/MM/YYYY</span></p>
+                    <p>Продолжительность: X недель</p>
+
+                    <h2 class="mt-4">Уроки курса</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item" th:each="lesson : ${lessons}">
+                            <h5 th:text="${lesson.title}">Название урока</h5>
+                            <p th:text="${lesson.description}">Описание урока</p>
+                            <p>Продолжительность: <span th:text="${lesson.duration}">X</span> минут</p>
+                            <a th:href="${lesson.videoUrl}" class="btn btn-outline-primary">Смотреть видео</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Присоединиться к курсу</h5>
+                            <button type="submit" class="btn btn-primary btn-block">Присоединиться</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Подвал сайта -->
+<footer class="bg-dark text-light py-4">
+    <div class="container text-center">
+        <p>&copy; 2024 OnlineEd - Учись где угодно</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

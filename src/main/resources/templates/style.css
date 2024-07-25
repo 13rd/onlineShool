@@ -1,0 +1,29 @@
+/* Дополнительные стили для сайта */
+
+/* Главное содержимое */
+main {
+    min-height: 80vh;
+}
+
+/* Карточки курсов */
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Дополнительные стили для страниц входа и регистрации */
+
+.card {
+    margin-top: 50px;
+}
+
+/* Добавим стили для формы на мобильных устройствах */
+@media (max-width: 576px) {
+    .card {
+        margin-top: 20px;
+    }
+}

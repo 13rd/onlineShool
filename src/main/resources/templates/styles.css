@@ -1,0 +1,25 @@
+/* Дополнительные стили для страниц профилей */
+
+/* Основное содержимое */
+main {
+    min-height: 80vh;
+}
+
+/* Изображение профиля */
+.rounded-circle {
+    border: 4px solid #fff;
+}
+
+/* Карточка профиля */
+.card {
+    height: 100%;
+}
+
+/* Стили для списка курсов */
+.list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
