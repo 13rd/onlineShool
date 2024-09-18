@@ -1,12 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.User;
-import com.example.demo.requests.LoginRequest;
 import com.example.demo.service.LoginService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +36,7 @@ public class LoginController {
             System.out.println("Неполные учетные данные");
         }
         if (loginService.authenticate(username, password)) {
-            // Здесь можно сгенерировать JWT токен
+            // JWT
             System.out.println("Успешная аутентификация");
             return "redirect:/";
         } else {

@@ -1,57 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{fragments/header}"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OnlineEd - Учись где угодно</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
-
-<!-- Шапка сайта -->
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">OnlineEd</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/courses">Курсы</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">О нас</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Контакты</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/login}">Вход</a>
-
-
-
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
+<div th:replace="~{fragments/header :: header}"></div>
 <!-- Главный контент -->
 <main>
     <section class="py-5">
         <div class="container">
             <h1 class="text-center mb-4">Добро пожаловать в OnlineEd</h1>
-            <h1 class="text-center mb-4" th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
-            <div th:if="${param.login}">
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Sign Out"/>
-                </form>
-            </div>
+            <h1 class="text-center mb-4" th:inline="text">Hello </h1>
+
             <p class="text-center lead">Изучайте новые предметы и развивайтесь с нашими онлайн курсами.</p>
         </div>
     </section>
@@ -77,14 +42,6 @@
     </section>
 </main>
 
-<!-- Подвал сайта -->
-<footer class="bg-dark text-light py-4">
-    <div class="container text-center">
-        <p>&copy; 2024 OnlineEd - Учись где угодно</p>
-    </div>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

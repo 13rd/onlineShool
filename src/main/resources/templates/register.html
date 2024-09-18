@@ -13,6 +13,21 @@
         <div class="form-group"><label> Surname : <input type="text" name="surname"/> </label></div>
         <div class="form-group"><label> Email : <input type="email" name="email"/> </label></div>
         <div class="form-group"><label> Password: <input type="password" name="password"/> </label></div>
+        <div class="form-group">
+            <label for="accountRole">Choose Account Type:</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" id="teacherRadio" name="accountRole" value="TEACHER" checked>
+                    Teacher
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" id="studentRadio" name="accountRole" value="STUDENT">
+                    Student
+                </label>
+            </div>
+        </div>
         <div class="form-group"><input class="btn btn-primary" type="submit" value="Sign In"/></div>
     </form>
     <p th:text="${message}"></p>

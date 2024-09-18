@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.User;
+import com.example.demo.model.UserModel;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,16 +29,16 @@ public class RegistrationController {
                                @RequestParam (required = true, defaultValue = "!@") String surname,
                                @RequestParam (required = true, defaultValue = "!@") String password,
                                @RequestParam (required = true, defaultValue = "!@") String email,
-                               @RequestParam (required = true, defaultValue = "!@") String role) {
-        if(!(name.equals("!@") & surname.equals("!@") & password.equals("!@") & email.equals("!@") & role.equals("!@"))) {
+                               @RequestParam (required = true, defaultValue = "!@") String accountRole) {
+        if(!(name.equals("!@") & surname.equals("!@") & password.equals("!@") & email.equals("!@") & accountRole.equals("!@"))) {
             System.out.println(name + " " + surname + " " + password);
-            User user = new User();
+            UserModel user = new UserModel();
             user.setUsername(username);
             user.setName(name);
             user.setSurname(surname);
             user.setPassword(password);
             user.setEmail(email);
-            user.setRole(role);
+            user.setRole(accountRole);
             //TODO: diff params
             if(userService.saveUser(user))
                 System.out.println("GOOD");

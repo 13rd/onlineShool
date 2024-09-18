@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'OnlineEd - Ошибка'">OnlineEd - Ошибка</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- Главный контент -->
+<main>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="mb-4">Произошла ошибка</h1>
+                    <p class="lead" th:text="${errorMessage}">Сообщение об ошибке будет отображено здесь.</p>
+
+                    <h2 class="mt-4">Подробности ошибки</h2>
+                    <ul class="list-group">
+<!--                        <li class="list-group-item" th:each="error : ${errors}">-->
+<!--                            <p th:text="${error}">Ошибка</p>-->
+<!--                        </li>-->
+                    </ul>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Вернуться назад</h5>
+                            <a th:href="@{/}" class="btn btn-primary btn-block">На главную</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

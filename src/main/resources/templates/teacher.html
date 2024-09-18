@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,31 +9,7 @@
 </head>
 <body>
 
-<!-- Шапка сайта -->
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">OnlineEd</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Курсы</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Профиль</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Выход</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
+<div th:replace="~{fragments/header :: header}"></div>
 <!-- Главный контент -->
 <main>
     <section class="py-5">
@@ -43,7 +19,7 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <img src="teacher-avatar.jpg" alt="Avatar" class="rounded-circle mb-3" style="width: 150px; height: 150px;">
-                            <h4 class="card-title">Имя Учителя</h4>
+                            <h4 class="card-title" th:text="${user.name + user.surname}"></h4>
                             <p class="card-text">Область: Java</p>
                             <a href="#" class="btn btn-primary btn-block">Изменить профиль</a>
                         </div>
@@ -51,25 +27,17 @@
                 </div>
                 <div class="col-md-8">
                     <h2 class="mb-4">Мои Курсы</h2>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">Название Курса 1</a>
-                        <a href="#" class="list-group-item list-group-item-action">Название Курса 2</a>
-                        <a href="#" class="list-group-item list-group-item-action">Название Курса 3</a>
+                    <div class="list-group" th:each="course : ${enrolledCourses}">
+                        <a th:href="@{/courses/{id}(id=${course.id})}" class="list-group-item list-group-item-action" th:text="${course.title}"></a>
+
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
 </main>
 
-<!-- Подвал сайта -->
-<footer class="bg-dark text-light py-4">
-    <div class="container text-center">
-        <p>&copy; 2024 OnlineEd - Учись где угодно</p>
-    </div>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
