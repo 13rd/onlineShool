@@ -26,6 +26,7 @@ public class UserModel{
     private String name;
     private String surname;
     private List<String> coursesEnrolled = new ArrayList<>();
+    private List<String> reporstList = new ArrayList<>();
 
     // getters and setters
 
@@ -42,5 +43,13 @@ public class UserModel{
 
     public void addCourse(Course course){
         coursesEnrolled.add(course.getId());
+    }
+
+    public void addReport(Report report){
+        reporstList.add(report.getId());
+    }
+
+    public void deleteCourse(Course course){
+        coursesEnrolled.remove(course);
     }
 }

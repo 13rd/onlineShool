@@ -12,8 +12,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -34,7 +37,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserModel> user = userRepository.findByUsername(username);
-        if(user == null) {
+        if(user.isEmpty()) {
             throw new UsernameNotFoundException("Cant find user with username: " + username);
         }
         return user.map(MyUserDetails::new).orElseThrow((() -> new UsernameNotFoundException(username + " not found")));
@@ -53,9 +56,20 @@ public class UserService implements UserDetailsService {
     public void subscribeToCourse(UserModel user, String courseId) {
         Optional<UserModel> userFromDB = userRepository.findByUsername(user.getUsername());
         Optional<Course> courseFromDB = courseService.loadCourseById(courseId);
-         if (userFromDB.isPresent() && courseFromDB.isPresent()) {
+         if (userFromDB.isPresent() & courseFromDB.isPresent() && courseService.addSub(courseFromDB.get().getId())) {
              user.addCourse(courseFromDB.get());
              userRepository.save(user);
+
+        }
+
+    }
+    public void unsubscribeToCourse(UserModel user, String courseId) {
+        Optional<UserModel> userFromDB = userRepository.findByUsername(user.getUsername());
+        Optional<Course> courseFromDB = courseService.loadCourseById(courseId);
+        if (userFromDB.isPresent() && courseFromDB.isPresent() && courseService.deleteSub(courseFromDB.get().getId())) {
+            user.deleteCourse(courseFromDB.get());
+            userRepository.save(user);
+
         }
 
     }
@@ -69,8 +83,6 @@ public class UserService implements UserDetailsService {
         return false;
     }
 
-
-
     public List<UserModel> getAllUsers() {
         return userRepository.findAll();
     }
@@ -79,10 +91,14 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id);
     }
 
-//    public void register(User user) {
-//        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
-//        userRepository.save(user);
-//    }
 
+    public List<Course> getAllCourseInUser(String id){
+        if (getUserById(id).isEmpty()){
+            System.out.println("not user");  // redirect:/login
+            return new ArrayList<>();
+        }
+        return getUserById(id).get().getCoursesEnrolled().stream().map(course -> courseService.loadCourseById(course).get()).collect(Collectors.toList());
+
+    }
 
 }

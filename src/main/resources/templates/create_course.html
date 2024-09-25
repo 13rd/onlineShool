@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Course</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Create New Course'">Create New Course</h1>
+
+    <form th:action="@{/create_course}" method="post">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" step="1" name="description" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="count">Количество участников:</label>
+            <input type="number"  id="count" name="count" required>
+        </div>
+
+        <h2>Lessons</h2>
+<!--        <button type="button" id="addLessonBtn" class="btn btn-primary">Add Lesson</button>-->
+<!--        <div id="lessonContainer"></div>-->
+
+        <button type="submit" class="btn btn-success">Create Course</button>
+    </form>
+
+    <p th:text="${message}"></p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

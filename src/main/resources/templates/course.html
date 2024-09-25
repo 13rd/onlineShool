@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title >OnlineEd - Название Курса</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style2.css">
+<!--    <link rel="stylesheet" href="style2.css">-->
 </head>
 <body>
 
@@ -21,19 +21,20 @@
                     <p class="lead" th:text="${course.description}">Описание курса. Здесь вы можете узнать больше о содержании и особенностях этого курса.</p>
                     <p>Преподаватель: <span th:text="${teacher.name + teacher.surname}">Имя Преподавателя</span></p>
                     <p>Дата начала: <span th:text="${#dates.format(course.createdAt, 'dd/MM/yyyy')}">DD/MM/YYYY</span></p>
-                    <p>Продолжительность: X недель</p>
 
                     <h2 class="mt-4">Уроки курса</h2>
                     <ul class="list-group">
                         <li class="list-group-item" th:each="lesson : ${lessons}">
                             <h5 th:text="${lesson.title}">Название урока</h5>
                             <p th:text="${lesson.description}">Описание урока</p>
-                            <p>Продолжительность: <span th:text="${lesson.duration}">X</span> минут</p>
-                            <a th:href="${lesson.videoUrl}" class="btn btn-outline-primary">Смотреть урок</a>
+                            <span th:if="${userSubscribed}">
+                                 <a type="button" class="btn btn-primary btn-sm" th:href="@{/lesson/{id}(id=${lesson.id})}">Show</a>
+                            </span>
+
                         </li>
                     </ul>
                 </div>
-                <div th:if="${user.name}" class="col-md-4">
+                <div th:unless="${userSubscribed}" class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Присоединиться к курсу</h5>

@@ -20,16 +20,11 @@
                         <a class="nav-link" href="#">Контакты</a>
                     </li>
 
-                    <li class="nav-item">
-
-                        <a class="nav-link" th:href="@{/login}">Войти</a>
-                    </li>
-
                     <li th:if="${authenticated}"  class="nav-item">
-                        <a class="nav-link" th:href="@{/profile}" th:text="#{profile.button}"></a>
+                        <a class="nav-link" th:href="@{/profile}" >Мой профиль</a>
                     </li>
                     <li th:unless="${authenticated}"  class="nav-item">
-                        <a class="nav-link" th:href="@{/login}" th:text="#{login.button}"></a>
+                        <a class="nav-link" th:href="@{/login}" >Вход</a>
                     </li>
                 </ul>
             </div>

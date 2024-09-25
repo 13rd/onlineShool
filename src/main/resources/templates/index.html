@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OnlineEd - Учись где угодно</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
@@ -15,7 +15,6 @@
     <section class="py-5">
         <div class="container">
             <h1 class="text-center mb-4">Добро пожаловать в OnlineEd</h1>
-            <h1 class="text-center mb-4" th:inline="text">Hello </h1>
 
             <p class="text-center lead">Изучайте новые предметы и развивайтесь с нашими онлайн курсами.</p>
         </div>

@@ -13,9 +13,13 @@ public class Lesson {
     private String courseId;
     private String title;
     private String description;
-    private String videoUrl;
-    private int duration;
-    private Date createdAt;
+    private String content;
+    private String homework;
+    private Date createdAt = new Date();
 
+
+    public Lesson(){
+
+    }
     // getters and setters
 }

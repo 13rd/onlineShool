@@ -37,8 +37,10 @@ public class WebSecurityConfig {
             .csrf(AbstractHttpConfigurer::disable) // Disable CSRF for simplicity
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/login").permitAll() // Permit all access to /auth/welcome
+                    .requestMatchers("/profile").authenticated()
                     .requestMatchers("/courses/**").authenticated() // Require authentication for /auth/user/**
                     .requestMatchers("/users/**").authenticated()
+                    .requestMatchers("/lessons/**").authenticated()
                     .requestMatchers("/**").permitAll()
             )
             .formLogin(form -> form

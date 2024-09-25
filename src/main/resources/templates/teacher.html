@@ -20,15 +20,21 @@
                         <div class="card-body text-center">
                             <img src="teacher-avatar.jpg" alt="Avatar" class="rounded-circle mb-3" style="width: 150px; height: 150px;">
                             <h4 class="card-title" th:text="${user.name + user.surname}"></h4>
-                            <p class="card-text">Область: Java</p>
+                            <p class="card-text">Преподаватель</p>
                             <a href="#" class="btn btn-primary btn-block">Изменить профиль</a>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-8">
+                    <a th:href="@{/create_course}" class="btn btn-primary btn-block">Создать курс</a>
                     <h2 class="mb-4">Мои Курсы</h2>
                     <div class="list-group" th:each="course : ${enrolledCourses}">
-                        <a th:href="@{/courses/{id}(id=${course.id})}" class="list-group-item list-group-item-action" th:text="${course.title}"></a>
+                        <a th:href="@{/courses/{id}(id=${course.id})}" class="list-group-item list-group-item-action" th:text="${course.title}">
+                        </a>
+                        <a type="button" class="btn btn-primary btn-sm" th:href="@{/edit_course/{id}(id=${course.id})}">
+                            <i class="fas fa-pencil-alt"></i> Edit
+                        </a>
 
                     </div>
 
