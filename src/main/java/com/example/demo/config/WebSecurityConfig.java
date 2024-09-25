@@ -41,6 +41,7 @@ public class WebSecurityConfig {
                     .requestMatchers("/courses/**").authenticated() // Require authentication for /auth/user/**
                     .requestMatchers("/users/**").authenticated()
                     .requestMatchers("/lessons/**").authenticated()
+                    .requestMatchers("/messages").authenticated()
                     .requestMatchers("/**").permitAll()
             )
             .formLogin(form -> form

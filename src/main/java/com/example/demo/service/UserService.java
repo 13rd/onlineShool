@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.model.Course;
+import com.example.demo.model.Report;
 import com.example.demo.model.UserModel;
 import com.example.demo.repository.UserRepository;
 
@@ -25,6 +26,8 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private ReportService reportService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -51,6 +54,16 @@ public class UserService implements UserDetailsService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
+    }
+
+    public void addReportToUser(Report report, UserModel user){
+        Optional<UserModel> userFromDB = userRepository.findByUsername(user.getUsername());
+        Optional<Report> reportFromDB = reportService.loadReportById(report.getId());
+        if (userFromDB.isPresent() & reportFromDB.isPresent()) {
+            user.addReport(reportFromDB.get());
+            userRepository.save(user);
+
+        }
     }
 
     public void subscribeToCourse(UserModel user, String courseId) {

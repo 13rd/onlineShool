@@ -10,9 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Report {
     @Id
     private String id;
-    private String fromId;
-    private String toId;
-    private String lesson;
+    private String studentId;
+    private String teacherId;
+    private String lessonId;
     private String message;
-    private ReportStatus reportStatus;
+    private ReportStatus reportStatus = ReportStatus.ONCHECK;
 }

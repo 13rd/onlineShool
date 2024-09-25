@@ -7,6 +7,7 @@ import com.example.demo.repository.CourseRepository;
 import com.example.demo.requests.MyUserDetails;
 import com.example.demo.service.CourseService;
 import com.example.demo.service.LoginService;
+import com.example.demo.service.ReportService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,6 +29,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private ReportService reportService;
     @Autowired
     private CourseRepository courseRepository;
 

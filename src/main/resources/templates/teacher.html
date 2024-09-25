@@ -21,7 +21,7 @@
                             <img src="teacher-avatar.jpg" alt="Avatar" class="rounded-circle mb-3" style="width: 150px; height: 150px;">
                             <h4 class="card-title" th:text="${user.name + user.surname}"></h4>
                             <p class="card-text">Преподаватель</p>
-                            <a href="#" class="btn btn-primary btn-block">Изменить профиль</a>
+                            <a th:href="@{/messages}" class="btn btn-primary btn-block">Сообщения</a>
                         </div>
                     </div>
                 </div>
